@@ -2,7 +2,7 @@
 
 Explore what methane target a country could set for 2030, and what it would cost.
 
-**Live:** https://ember-labs-org.github.io/Methane-Target-Builder_Labs/ · published on [Ember Labs](https://ember-labs.org)
+**Live:** https://ember-labs-org.github.io/Methane-Target-Builder_Labs/ · published on [Ember Labs] https://ember-labs-org.github.io/methane-target-builder_labs/
 **Made by:** Bex Horner, Ember
 **Source repo:** [bexhorner/methane-target-builder](https://github.com/bexhorner/methane-target-builder). This repo is the Ember Labs fork of it.
 
