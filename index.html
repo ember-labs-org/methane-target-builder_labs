@@ -825,11 +825,7 @@ select{font-size:19.5px !important; padding:14px 17px !important}
 .footrow{padding-top:10px; margin-top:7px}
 
 .srcbox{border-bottom:1px solid var(--el-line); padding-bottom:10px; margin-bottom:12px}
-.srcbox summary{cursor:pointer; font-size:17px; font-weight:600; color:var(--el-white);
   list-style:none; display:flex; align-items:center; gap:9px}
-.srcbox summary::-webkit-details-marker{display:none}
-.srcbox summary::before{content:"+"; color:var(--el-yellow); font-size:19px; line-height:1}
-.srcbox[open] summary::before{content:"\2212"}
 .srcbox p{margin:10px 0 0; font-size:15.5px}
 .card{padding:12px 16px}
 
@@ -862,7 +858,6 @@ select{font-size:19px !important; padding:13px 16px !important}
 .tot{font-size:20px}
 .ti .n{font-size:24px}
 .ti .l{font-size:16px}
-.srcbox summary{font-size:18.5px}
 .srcbox p{font-size:17px}
 .dl button{font-size:17.5px; padding:13px 21px}
 .tourbtn{font-size:19px !important; padding:13px 26px !important}
@@ -897,7 +892,6 @@ select{font-size:20px !important}
 .tot{font-size:21px}
 .ti .n{font-size:25.5px}
 .ti .l{font-size:17px}
-.srcbox summary{font-size:19.5px}
 .srcbox p{font-size:18px}
 .dl button{font-size:18.5px}
 .tourbtn{font-size:20px !important}
@@ -937,7 +931,6 @@ select{font-size:22px !important; padding:14px 18px !important}
 .tot{font-size:23px}
 .ti .n{font-size:28px}
 .ti .l{font-size:18.5px}
-.srcbox summary{font-size:21.5px}
 .srcbox p{font-size:19.5px}
 .dl button{font-size:20.5px; padding:14px 23px}
 .tourbtn{font-size:22px !important; padding:14px 28px !important}
@@ -972,6 +965,11 @@ select{font-size:22px !important; padding:14px 18px !important}
 .nocurve-row .sn{font-size:22.5px !important; display:block !important}
 .nocurve-row .sn em{font-size:19.5px !important; display:block !important; margin-top:3px}
 .nocurve-row .nodata{font-size:19.5px}
+
+.srcbox{border-bottom:1px solid var(--el-line); padding-bottom:11px; margin-bottom:12px}
+.srcbox h2{font-size:23px; font-weight:600; color:var(--el-white); margin:0 0 8px}
+.srcbox p{margin:0 0 8px; font-size:19.5px}
+.srcbox p:last-child{margin-bottom:0}
 </style><script async src="https://cdn.jsdelivr.net/npm/@iframe-resizer/child@5.5.9"></script>
 <!-- Ember Labs analytics (Labs fork only): Umami, cookieless, no personal data. Only counts the
      live site (data-domains); data-performance adds page loading speed. Events: analytics.js.
@@ -1034,14 +1032,15 @@ select{font-size:22px !important; padding:14px 18px !important}
     <div class="key" id="mixkey"></div>
   </div>
 <div class="card">
-    <details class="srcbox">
-      <summary>Where the data comes from</summary>
-      <p>Emissions and fossil-fuel abatement come from the IEA. Agriculture and waste have no
-      country-level cost curves, so UNEP global ratios are used.</p>
+    <div class="srcbox">
+      <h2>Where the data comes from</h2>
+      <p>Emissions and fossil-fuel abatement data come from the IEA. For agriculture and waste, which
+      lack country-level cost curves, the tool uses global ratios from UNEP. Rows built that way
+      are labelled in the tool.</p>
       <p>Costs use the IEA's per-gigajoule figures. More details in the
       <a id="methodology-link" href="methane-abatement-tool-methodology.pdf">methodology
       (PDF)</a>.</p>
-    </details>
+    </div>
     <div class="dl"><button id="dlchart">Download a chart of this country</button>
       <span id="dlnote"></span></div></div>
   </div>
@@ -1050,7 +1049,7 @@ select{font-size:22px !important; padding:14px 18px !important}
 
   <div class="el-card">
     <h2>Where the cuts come from</h2>
-    <p class="dek"><b>Drag the white handle</b> to change a sector. The pale band is its potential, shaded by cost.</p>
+    <p class="dek"><b>Drag the white handle</b> on any bar to set how much of that sector you want to abate. The pale band behind it shows the technical potential, shaded by what it costs, and the dashed line shows the maximum abatement currently possible for that sector.</p>
     <div class="key" style="margin:0 0 14px">
       <span><i class="sw" style="background:var(--el-green)"></i>Pays for itself</span>
       <span><i class="sw" style="background:var(--el-yellow)"></i>Low cost, under $1,000/t</span>
@@ -1165,7 +1164,7 @@ function draw(struct){
     ? 'it makes money overall' : 'once every measure is running';
   document.getElementById('fAvg').textContent = priced>0 ? perT(cost/priced)+'/t' : 'n/a';
   document.getElementById('fMarg').textContent =
-    marg===null ? '' : `last tonne ${perT(marg)}/t`;
+    marg===null ? '' : `Cost of the last tonne: ${perT(marg)}/t`;
   document.getElementById('tv').textContent=num(kt/c.total*100,0)+'%';
   var bp=document.getElementById('bigPct'), bt=document.getElementById('bigTotal');
   if(bp) bp.textContent=num(kt/c.total*100,0)+'%';
@@ -1173,7 +1172,7 @@ function draw(struct){
   document.getElementById('clkey').style.display=useClosure?'':'none';
   const mxk=SEC.reduce((a,s)=>a+potential(c,s.k),0);
 
-  document.getElementById('mixSub').textContent=`${num(c.total)} kt of methane a year, all sources.`;
+  document.getElementById('mixSub').textContent=`${num(c.total)} kt of methane a year, from all sources.`;
   document.getElementById('mix').innerHTML=SEC.filter(s=>c.e[s.k]>0)
     .map(s=>`<i style="width:${c.e[s.k]/c.total*100}%; background:${s.col}"
       title="${s.n}: ${num(c.e[s.k])} kt"></i>`).join('');
@@ -1437,8 +1436,9 @@ setCountry(0);
         + "would cost. The tour takes about a minute and you can leave at any point.",
      setup:function(){ pick('China'); setTarget(null); }},
     {target:"#cty", title:"1 \u00b7 Choose a country",
-     text:"95 countries, with the ten biggest emitters listed first. The figure beside each name "
-        + "is all the methane that country releases in a year, from every human source.",
+     text:"95 countries, with the ten biggest emitters first, followed by all other countries in "
+        + "alphabetical order. The figure beside each name is all the methane that country "
+        + "releases in a year, from every human source.",
      setup:function(){ pick('China'); }},
     {target:"#mixcard", title:"2 \u00b7 See where the methane comes from",
      text:"Coal, oil and gas are only part of it. For most countries, farming is the single "
@@ -1446,9 +1446,9 @@ setCountry(0);
         + "would miss most of the problem.",
      setup:function(){ pick('China'); }},
     {target:".ctlfull", title:"3 \u00b7 Set a target",
-     text:"We have set 20% for you. The tool works out the cheapest way to get there: it starts "
-        + "with the lowest-cost measures anywhere in the country and works upwards, so the cuts "
-        + "land wherever they are cheapest rather than being shared out evenly.",
+     text:"We have set a 20% target for you. The tool works out the cheapest way to get there: it "
+        + "starts with the lowest-cost measures anywhere in the country and works upwards, so the "
+        + "cuts land wherever they are cheapest rather than being shared out evenly.",
      setup:function(){ setTarget(20); }},
     {target:".el-stats", title:"4 \u00b7 A 20% cut makes money",
      text:"The middle figure is the yearly bill. It is negative here, which means the gas these "
@@ -1776,7 +1776,7 @@ setCountry(0);
   // text and makes the page taller, which no height-only media query can see.
   // CSS zoom is not honoured everywhere (older Firefox ignores it), so where it is
   // not supported we fall back to a transform, which every browser handles.
-  var MIN = 0.25, PAD = 4, t;   // fitting always wins, at any window size
+  var MIN = 0.25, MAX = 1.35, PAD = 2, t;   // fit the window, up or down
   window.__fitScale = 1;
 
   // Don't trust a feature probe: apply the zoom and check it actually took effect.
@@ -1829,12 +1829,18 @@ setCountry(0);
   function fit(){
     apply(1);   // fit at every width, single column included
     var z = 1;
-    for (var i = 0; i < 8; i++){
-      var need = contentHeight();
+    for (var i = 0; i < 10; i++){
+      var need = contentHeight();                 // unscaled height of the tool
       var avail = window.innerHeight - PAD;
-      if (need * z <= avail) break;
-      z = Math.max(MIN, Math.min(1, avail / need));
+      var want = Math.max(MIN, Math.min(MAX, avail / need));
+      if (Math.abs(want - z) < 0.004) break;      // settled
+      z = want;
       apply(z);
+    }
+    // never leave it overflowing: a last pass down if the rewrap grew it
+    for (var k = 0; k < 4; k++){
+      if (document.documentElement.scrollHeight <= window.innerHeight + 1) break;
+      z = Math.max(MIN, z * 0.97); apply(z);
     }
     // last resort: if it still overflows, the scaling route failed - take the other one
     if (document.documentElement.scrollHeight > window.innerHeight + 2 && useZoom){
