@@ -57,4 +57,21 @@ There's no build step and no separate data files. To change the data or the meth
 
 ## Analytics
 
-Cookieless usage tracking with Umami, the same website as the other Labs tools, labelled `tool: methane-target-builder`. No cookies and no personal data. Visits on other addresses, such as local previews, aren't counted. Monthly reports come from the Labs analytics report skill.
+Cookieless usage tracking with [Umami](https://umami.is): no cookies, no personal data. It uses the same Umami website as the other Labs tools, and only counts the live site, so local previews aren't recorded. Page loading speed is recorded too. Monthly reports come from the Labs analytics report skill.
+
+`analytics.js` watches the page and sends these events, each labelled `tool: methane-target-builder` with the country selected:
+
+| Event | When | Details |
+| --- | --- | --- |
+| `country_selected` | a country is chosen | country |
+| `slider_set` | the target or a source's handle is released | control (`target` or the source: coal, og, agri, waste, …), value (%) |
+| `option_toggled` | thermal coal mine closure on or off | option, on |
+| `detail_opened` | "Show detail" on a source | source |
+| `breakdown_changed` | a breakdown button inside a source | source, by |
+| `download_clicked` | chart download or methodology PDF | what (`chart`, `methodology`) |
+| `tour_started` · `tour_skipped` · `tour_finished` · `tour_ended_early` | the tour | step (early exit) |
+| `outbound_link_clicked` | a link off the site | domain |
+
+Only real visitor actions count: the tour changes the country and target itself to demonstrate, and those changes are ignored.
+
+**After a Sync fork:** check the two `<script>` lines are still in the `<head>` of `index.html`, and re-add them if needed. The comment above them marks them.
