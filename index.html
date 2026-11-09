@@ -1041,6 +1041,13 @@ select{font-size:22px !important; padding:14px 18px !important}
   .sn{font-size:15px} .pickrow{flex-direction:column; align-items:flex-start; gap:5px}
   select{width:100%}
 }
+
+/* Totals and cost groups: let figures and labels fit, so nothing spills out of the card */
+.tot{grid-template-columns:auto 1fr max-content !important}
+.tot .rt{white-space:nowrap}
+.tiers{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)) !important}
+.ti{min-width:0}
+.ti .l{white-space:normal !important}
 </style><script async src="https://cdn.jsdelivr.net/npm/@iframe-resizer/child@5.5.9"></script>
 <!-- Ember Labs analytics (Labs fork only): Umami, cookieless, no personal data. Only counts the
      live site (data-domains); data-performance adds page loading speed. Events: analytics.js.
