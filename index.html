@@ -605,7 +605,7 @@ select{font-size:16px !important; padding:11px 14px !important; width:100%}
 
 .dl button{font-size:15px; padding:11px 18px}
 
-@media (max-width:1150px){
+@media (max-width:1300px){
   .two{grid-template-columns:1fr}
   .srow, .tot{grid-template-columns:330px 1fr 112px !important}
   .sn{display:flex !important; gap:9px; align-items:baseline}
@@ -970,6 +970,77 @@ select{font-size:22px !important; padding:14px 18px !important}
 .srcbox h2{font-size:23px; font-weight:600; color:var(--el-white); margin:0 0 8px}
 .srcbox p{margin:0 0 8px; font-size:19.5px}
 .srcbox p:last-child{margin-bottom:0}
+
+/* ---- narrower frames: the type steps down so nothing looks oversized ---- */
+@media (max-width:1300px){
+  .el-wrap{padding:0 22px}
+  .srow, .tot{grid-template-columns:300px 1fr 128px !important}
+  .el-hero h1{font-size:40px} .srcline{font-size:17px}
+  .el-label{font-size:19px} select{font-size:19px !important}
+  .cl{font-size:19px} .cl em{font-size:16px}
+  .el-stat .lab{font-size:18px} .el-stat .sub{font-size:15.5px}
+  .el-stat .num{font-size:33px} .el-stat .num s{font-size:17px}
+  .el-stat .delta{font-size:15.5px}
+  .el-card > h2{font-size:24px} .el-card > .dek{font-size:17px}
+  .key{font-size:16px} .sn{font-size:19.5px} .sn em{font-size:17px}
+  .exp{font-size:15.5px} .rt .a{font-size:20px} .rt .c{font-size:17px}
+  .tot{font-size:20px} .ti .n{font-size:24px} .ti .l{font-size:16px}
+  .srcbox h2{font-size:20px} .srcbox p{font-size:17px}
+  .dl button{font-size:17.5px} .tourbtn{font-size:19px !important; padding:11px 22px !important}
+  .nocurve-row .sn{font-size:19.5px !important} .nocurve-row .sn em{font-size:17px !important}
+  .nocurve-row .nodata{font-size:17px}
+}
+@media (max-width:1050px){
+  .srow, .tot{grid-template-columns:260px 1fr 112px !important}
+  .el-hero h1{font-size:34px} .srcline{font-size:15.5px}
+  .el-label{font-size:17px} select{font-size:17px !important; padding:11px 13px !important}
+  .cl{font-size:17px} .cl em{font-size:14.5px} .mineicon{width:25px; height:25px}
+  .el-stats{gap:9px} .el-stat{padding:10px 12px}
+  .el-stat .lab{font-size:16px} .el-stat .sub{font-size:14px}
+  .el-stat .num{font-size:28px} .el-stat .num s{font-size:15px}
+  .el-stat .delta{font-size:14px}
+  .el-card > h2{font-size:21px} .el-card > .dek{font-size:15.5px}
+  .key{font-size:14.5px} .mix{height:26px}
+  .sn{font-size:17px} .sn em{font-size:15px}
+  .exp{font-size:14px; padding:3px 10px} .rt .a{font-size:17.5px} .rt .c{font-size:15px}
+  .tr{height:22px} .tot{font-size:17.5px}
+  .ti .n{font-size:21px} .ti .l{font-size:14.5px; white-space:normal}
+  .srcbox h2{font-size:18px} .srcbox p{font-size:15.5px}
+  .dl button{font-size:16px; padding:11px 18px}
+  .tourbtn{font-size:17px !important; padding:10px 19px !important}
+  .nocurve-row .sn{font-size:17px !important} .nocurve-row .sn em{font-size:15px !important}
+  .nocurve-row .nodata{font-size:15px}
+}
+@media (max-width:860px){
+  .srow, .tot{grid-template-columns:210px 1fr 96px !important}
+  .el-hero h1{font-size:29px} .srcline{font-size:14px}
+  .el-stats{grid-template-columns:repeat(3,1fr) !important; gap:8px}
+  .el-stat{padding:9px 10px}
+  .el-stat .lab{font-size:14px} .el-stat .sub{font-size:12.5px}
+  .el-stat .num{font-size:23px} .el-stat .num s{font-size:13px}
+  .el-stat .delta{font-size:12.5px}
+  .el-card > h2{font-size:19px} .el-card > .dek{font-size:14px}
+  .key{font-size:13px} .sn{font-size:15px} .sn em{font-size:13.5px}
+  .exp{font-size:12.5px} .rt .a{font-size:15.5px} .rt .c{font-size:13.5px}
+  .tot{font-size:15.5px} .ti .n{font-size:18px} .ti .l{font-size:13px}
+  .srcbox h2{font-size:16px} .srcbox p{font-size:14px}
+  .dl button{font-size:14.5px} .tourbtn{font-size:15px !important; padding:9px 16px !important}
+  .nocurve-row .sn{font-size:15px !important} .nocurve-row .sn em{font-size:13.5px !important}
+  .nocurve-row .nodata{font-size:13.5px}
+}
+/* phone: the sector row stacks so the bar keeps a full-width run */
+@media (max-width:620px){
+  .el-wrap{padding:0 14px}
+  .srow, .tot{grid-template-columns:1fr auto !important; gap:7px 10px}
+  .srow .tr{grid-column:1 / -1}
+  .el-hero h1{font-size:24px}
+  .el-stats{grid-template-columns:1fr !important}
+  .el-stat .num{font-size:25px}
+  .tiers{grid-template-columns:1fr !important}
+  .ti .l{white-space:normal}
+  .sn{font-size:15px} .pickrow{flex-direction:column; align-items:flex-start; gap:5px}
+  select{width:100%}
+}
 </style><script async src="https://cdn.jsdelivr.net/npm/@iframe-resizer/child@5.5.9"></script>
 <!-- Ember Labs analytics (Labs fork only): Umami, cookieless, no personal data. Only counts the
      live site (data-domains); data-performance adds page loading speed. Events: analytics.js.
@@ -1565,7 +1636,9 @@ setCountry(0);
     var top = below ? r.bottom/z + 14 : r.top/z - th - 14;
     top = Math.max(14, Math.min(top, vh - th - 14));
     tip.style.top = top + 'px';
-    tip.style.left = Math.min(Math.max(14, r.left/z), vw - 520) + 'px';
+    // clamp against the tip's real width: a fixed subtraction goes negative on a phone
+    var tw = (tip.getBoundingClientRect().width || 440)/z;
+    tip.style.left = Math.max(14, Math.min(r.left/z, vw - tw - 14)) + 'px';
     // measure what actually landed and pull it back if it overhangs the window
     requestAnimationFrame(function(){
       var bb = tip.getBoundingClientRect();
@@ -1777,6 +1850,10 @@ setCountry(0);
   // CSS zoom is not honoured everywhere (older Firefox ignores it), so where it is
   // not supported we fall back to a transform, which every browser handles.
   var MIN = 0.25, MAX = 1.35, PAD = 2, t;   // fit the window, up or down
+  // Inside the Labs frame the height is set by iframe-resizer to match the content,
+  // so fitting to height is circular and leaves the type looking oversized. There we
+  // fit to WIDTH instead, against a fixed design canvas, and never scale up.
+  var FRAMED = (function(){ try { return window.self !== window.top; } catch(e){ return true; } })();
   window.__fitScale = 1;
 
   // Don't trust a feature probe: apply the zoom and check it actually took effect.
@@ -1827,6 +1904,13 @@ setCountry(0);
               : document.documentElement.scrollHeight;
   }
   function fit(){
+    if (FRAMED){
+      // No scaling in a frame: the width is fixed by the host page and the height is set
+      // from the content, so there is nothing to fit to. CSS below handles the width.
+      apply(1);
+      if (window.__tourReposition) window.__tourReposition();
+      return;
+    }
     apply(1);   // fit at every width, single column included
     var z = 1;
     for (var i = 0; i < 10; i++){
