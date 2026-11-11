@@ -12,6 +12,7 @@
   --el-ramp-green-1:#0B6638;  --el-ramp-green-2:#109553;  --el-ramp-green-4:#A3D9A5;
   --el-ramp-blue-1:#203772;   --el-ramp-blue-2:#1E609C;   --el-ramp-blue-4:#97CCED;
   --el-ramp-blue-5:#C4D9E9;   --el-ramp-orange-1:#891B05;
+  --el-chart-cat-5:#C4D9E9;   --el-chart-cat-6:#FFF4A3;
 
 /* ---- Ember Labs design tokens (references/colour-tokens.md) ---- */
 --el-navy:#192238; --el-canvas:#414F6F; --el-slate:#626E88;
@@ -27,6 +28,7 @@
   --s-coal:var(--el-ramp-blue-1); --s-og:#37A6E6;
   --s-agri:var(--el-ramp-green-4); --s-waste:#97CCED;
   --s-bio:var(--el-ramp-green-1); --s-other:var(--el-muted);
+  --s-aband:var(--el-chart-cat-6);
 }
 
 *{box-sizing:border-box}
@@ -1160,7 +1162,7 @@ const SEC = [
   {k:'og',    n:'Oil and gas', col:'var(--s-og)'},
   {k:'agri',  n:'Agriculture', col:'var(--s-agri)'},
   {k:'waste', n:'Waste',       col:'var(--s-waste)'},
-  {k:'aband', n:'Abandoned facilities', col: '#97CCED'},
+  {k:'aband', n:'Abandoned facilities', col:'var(--s-aband)'},
   {k:'bio',   n:'Bioenergy',   col:'var(--s-bio)'},
   {k:'other', n:'Other',       col:'var(--s-other)'},
 ];
@@ -1722,7 +1724,7 @@ setCountry(0);
     {k:'og',    n:'Oil and gas',          c:'#37A6E6'},
     {k:'agri',  n:'Agriculture',          c: '#A3D9A5'},
     {k:'waste', n:'Waste',                c:'#97CCED'},
-    {k:'aband', n:'Abandoned facilities', c:'#97CCED'},
+    {k:'aband', n:'Abandoned facilities', c:'#FFF4A3'},
     {k:'bio',   n:'Bioenergy',            c: '#0B6638'},
     {k:'other', n:'Other',                c:'#B0B7C6'}
   ];
